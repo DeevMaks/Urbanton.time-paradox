@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="assets/style/main.css">
+    <title>pet.ru | Сайт о любимых питомцах</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <nav>
+            <ul>
+                <li class="logo">
+                    <a href="/">
+                        <img src="assets/img/icons/logo_white.png">
+                        pet.ru
+                    </a>
+                </li>
+                <li>
+                    <a href="/pets">Питомцы</a>
+                </li>
+                <li>
+                    <a href="/blog">Интересное</a>
+                </li>
+                <li class="right">
+                    <a href="/login">Войти</a>  |  
+                    <a href="/registration">Регистрация</a>
+                </li>
+            </ul>
+        </nav>
+        
+        <div class="page">
+           
+            <div class="mission">
+                <h2>Не будьте равнодушными!</h2>
+
+                <p>Каждый день в городе теряются животные. Найти их бывает довольно трудно, но вместе мы можем помочь друг другу. Наш сервис позволяет хозяевам отмечать на карте место пропажи, а волонтёрам места, где они могли бы их увидеть. Совместно мы сможем вернуть их домой!</p>
+            </div>
+            
+            <div class="inputs">
+               
+                <h3>Поиск по имени:</h3>
+                <input type="text" v-model="filter_name">
+                
+                <h3>Поиск по виду:</h3>
+                <select v-model="filter_type" @change="sel(filter_type)">
+                    <option value="">Любой</option>
+                    <option v-for="type in types" :value="type.name">{{ type.title }}</option>
+                </select>
+                
+                <div v-if="filter_type">
+                    <h3>Поиск по породе:</h3>
+                    <select v-model="filter_breed">
+                        <option value="">Любая</option>
+                        <option v-for="breed in breeds_selected">{{ breed }}</option>
+                    </select>
+                </div>
+                
+            </div>
+            
+            <div class="grid grid-4">
+               
+                <div class="cell" v-for="pet in pets" v-if="filter(pet.name, filter_name) 
+                   && filter(pet.type, filter_type)
+                   && filter(pet.breed, filter_breed)">
+                    <a href="/pet/123">
+                        <img :src="'assets/img/pets/'+pet.image">
+                        <span>{{ pet.name }}</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+    
+    <script src="assets/js/pets.js"></script>
+</body>
+</html>
