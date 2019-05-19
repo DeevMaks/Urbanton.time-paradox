@@ -6,6 +6,8 @@
 
         <title>Laravel</title>
 
+        <script src="js/app.js"></script>
+
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
@@ -63,7 +65,7 @@
             }
         </style>
     </head>
-    <body>
+    <body id="app">
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -93,6 +95,9 @@
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
+                <passport-clients></passport-clients>
+<passport-authorized-clients></passport-authorized-clients>
+<passport-personal-access-tokens></passport-personal-access-tokens>
             </div>
         </div>
     </body>
